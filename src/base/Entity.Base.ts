@@ -1,6 +1,7 @@
 import {
   CreateDateColumn,
   PrimaryGeneratedColumn,
+  Timestamp,
   UpdateDateColumn,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
@@ -9,11 +10,9 @@ export abstract class BaseEntityUuid {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @CreateDateColumn()
-  @Exclude()
-  created_at: Date;
+  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: Timestamp;
 
-  @UpdateDateColumn()
-  @Exclude()
-  updated_at: Date;
+  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updated_at: Timestamp;
 }
