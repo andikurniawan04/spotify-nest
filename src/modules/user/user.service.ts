@@ -9,8 +9,4 @@ export class UserService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
-
-  findByEmail(email: string): Promise<User> {
-    return this.userRepository.findOne({ where: { email } });
-  }
 }

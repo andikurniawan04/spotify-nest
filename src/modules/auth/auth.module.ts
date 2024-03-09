@@ -8,6 +8,7 @@ import { User } from '../user/user.entity';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 
+require('dotenv').config();
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),

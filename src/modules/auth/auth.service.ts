@@ -4,30 +4,28 @@ import {
   InternalServerErrorException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { ResponseJson } from 'src/helpers/ResponseJson';
 import { User } from '../user/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { LoginDto, RegisterDto } from './auth.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
-export class AuthService extends ResponseJson {
-  ResponseJson = new ResponseJson();
-
+export class AuthService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
-  ) {
-    super();
-  }
+    private jwtService: JwtService,
+  ) {}
 
   async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
     const user = await this.userRepository.findOne({ where: { email } });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      return 'sukses';
+      const accessToken: string = await this.jwtService.sign({ email });
+      return accessToken;
     } else {
       throw new UnauthorizedException('Username or password is wrong');
     }

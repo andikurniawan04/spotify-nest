@@ -13,7 +13,14 @@ import { AlbumController } from './modules/album/album.controller';
 import { AlbumModule } from './modules/album/album.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({}), DatabaseConfig, AuthModule, UserModule, ArtistModule, AlbumModule],
+  imports: [
+    ConfigModule.forRoot({}),
+    DatabaseConfig,
+    AuthModule,
+    UserModule,
+    ArtistModule,
+    AlbumModule,
+  ],
   controllers: [AppController, AlbumController],
   providers: [AppService, ResponseJson],
 })

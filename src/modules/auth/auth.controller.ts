@@ -24,7 +24,12 @@ export class AuthController {
   @Post('login')
   @HttpCode(200)
   async login(@Body() loginDto: LoginDto) {
-    return this.authService.login(loginDto);
+    const accessToken = await this.authService.login(loginDto);
+
+    return {
+      status: true,
+      'access-token': accessToken,
+    };
   }
 
   @Post('register')
