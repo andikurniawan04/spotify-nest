@@ -20,6 +20,7 @@ import { AlbumModule } from './modules/album/album.module';
     UserModule,
     ArtistModule,
     AlbumModule,
+    AuthModule,
   ],
   controllers: [AppController, AlbumController],
   providers: [AppService, ResponseJson],
