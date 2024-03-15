@@ -3,14 +3,13 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
   ManyToMany,
   JoinTable,
 } from 'typeorm';
 import { Artist } from '../artist/artist.entity';
 
-@Entity('albums')
-export class Album extends BaseEntityUuid {
+@Entity('songs')
+export class Song extends BaseEntityUuid {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,12 +17,12 @@ export class Album extends BaseEntityUuid {
   title: string;
 
   @Column()
-  year: number;
+  duration: string;
 
   @Column()
-  thumbnail: string;
+  album_id: string;
 
-  @ManyToMany(() => Artist, (artist) => artist.albums)
+  @ManyToMany(() => Artist, (artist) => artist.songs)
   @JoinTable()
   artists: Artist[];
 }

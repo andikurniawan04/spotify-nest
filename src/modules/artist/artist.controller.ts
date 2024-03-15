@@ -8,6 +8,11 @@ export class ArtistController {
   constructor(private readonly artistService: ArtistService) {}
   @Get(':id')
   async artist(@Param('id') id: string) {
-    return await this.artistService.artist(id);
+    const data = await this.artistService.artist(id);
+
+    return {
+      status: true,
+      data,
+    };
   }
 }
