@@ -7,6 +7,7 @@ import {
   JoinTable,
 } from 'typeorm';
 import { Artist } from '../artist/artist.entity';
+import { Playlist } from '../playlist/playlist.entity';
 
 @Entity('songs')
 export class Song extends BaseEntityUuid {
@@ -25,4 +26,8 @@ export class Song extends BaseEntityUuid {
   @ManyToMany(() => Artist, (artist) => artist.songs)
   @JoinTable()
   artists: Artist[];
+
+  @ManyToMany(() => Playlist, (playlist) => playlist.songs)
+  @JoinTable()
+  playlists: Playlist[];
 }

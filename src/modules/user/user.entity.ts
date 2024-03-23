@@ -1,5 +1,6 @@
 import { BaseEntityUuid } from 'src/base/Entity.Base';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Playlist } from '../playlist/playlist.entity';
 
 @Entity('users')
 export class User extends BaseEntityUuid {
@@ -14,4 +15,7 @@ export class User extends BaseEntityUuid {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Playlist, (playlist) => playlist.users)
+  playlists: Playlist;
 }
