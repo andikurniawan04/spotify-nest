@@ -4,6 +4,7 @@ import { ArtistService } from './artist.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Artist } from './artist.entity';
 import { AuthModule } from '../auth/auth.module';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Artist]), AuthModule],

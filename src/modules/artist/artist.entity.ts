@@ -4,11 +4,11 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToMany,
-  OneToMany,
   JoinTable,
 } from 'typeorm';
 import { Album } from '../album/album.entity';
 import { Song } from '../song/song.entity';
+import { User } from '../user/user.entity';
 
 @Entity('artists')
 export class Artist extends BaseEntityUuid {
@@ -24,6 +24,10 @@ export class Artist extends BaseEntityUuid {
   @ManyToMany(() => Album, (album) => album.artists)
   @JoinTable()
   albums: Album[];
+
+  @ManyToMany(() => User, (user) => user.artists)
+  @JoinTable()
+  users: User[];
 
   @ManyToMany(() => Song, (song) => song.artists)
   @JoinTable()

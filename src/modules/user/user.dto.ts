@@ -13,3 +13,9 @@ export class UserDto {
   @IsNotEmpty()
   password: string;
 }
+
+export class followingArtistDto {
+  @IsString()
+  @IsNotEmpty()
+  artistId: string;
+}
