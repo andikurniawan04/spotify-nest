@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { User } from './user.entity';
 import { Artist } from '../artist/artist.entity';
 import { followingArtistDto } from './user.dto';
@@ -14,8 +14,23 @@ export class UserService {
     private artistRepository: Repository<Artist>,
   ) {}
 
-  async listFollowArtist() {
-    return 'andi';
+  async listFollowArtist(user: User) {
+    const followArtist = await this.userRepository.findOne({
+      where: { id: user.id },
+      relations: ['artists'],
+    });
+
+    const artistId = [];
+    followArtist.artists.map((item) => {
+      artistId.push(item.id);
+    });
+
+    const artist = await this.artistRepository.find({
+      where: { id: In(artistId) },
+      select: ['id', 'name', 'images'],
+    });
+
+    return artist;
   }
 
   async followArtist(user: User, followingArtistDto: followingArtistDto) {
@@ -44,7 +59,8 @@ export class UserService {
       return 'User is aiready follow the artist';
     }
 
-    followArtist.artists = [artist];
+    followArtist.artists.push(artist);
+
     await this.userRepository.save(followArtist);
 
     return 'Follow the artist was succesfully';

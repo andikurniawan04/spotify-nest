@@ -19,10 +19,14 @@ import { User } from './user.entity';
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Get('following/artist')
-  async listFollowArtist() {
-    const data = await this.userService.listFollowArtist();
+  async listFollowArtist(@GetUser() user: User) {
+    const data = await this.userService.listFollowArtist(user);
 
-    return data;
+    return {
+      status: true,
+      total: data.length,
+      data,
+    };
   }
 
   @Post('following/artist')
