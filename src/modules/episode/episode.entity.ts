@@ -3,13 +3,12 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
   ManyToMany,
   JoinTable,
   ManyToOne,
 } from 'typeorm';
-import { Artist } from '../artist/artist.entity';
 import { Podcast } from '../podcast/podcast.entity';
+import { User } from '../user/user.entity';
 
 @Entity('podcast_episodes')
 export class Episode extends BaseEntityUuid {
@@ -39,4 +38,8 @@ export class Episode extends BaseEntityUuid {
 
   @ManyToOne(() => Podcast, (podcast) => podcast.episodes)
   podcasts: Podcast;
+
+  @ManyToMany(() => User, (user) => user.episodes)
+  @JoinTable()
+  users: User[];
 }

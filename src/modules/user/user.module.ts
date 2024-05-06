@@ -6,9 +6,14 @@ import { User } from './user.entity';
 import { Artist } from '../artist/artist.entity';
 import { PassportModule } from '@nestjs/passport';
 import { AuthModule } from '../auth/auth.module';
+import { Song } from '../song/song.entity';
+import { Episode } from '../episode/episode.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Artist]), AuthModule],
+  imports: [
+    TypeOrmModule.forFeature([User, Artist, Song, Episode]),
+    AuthModule,
+  ],
   providers: [UserService],
   controllers: [UserController],
   exports: [UserService],

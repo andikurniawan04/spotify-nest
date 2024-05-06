@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 export class UserDto {
   @IsString()
@@ -15,7 +15,19 @@ export class UserDto {
 }
 
 export class followingArtistDto {
-  @IsString()
   @IsNotEmpty()
-  artistId: string;
+  @IsArray()
+  artistId: string[];
+}
+
+export class likeSongDto {
+  @IsNotEmpty()
+  @IsArray()
+  songId: string[];
+}
+
+export class saveEpisodeDto {
+  @IsNotEmpty()
+  @IsArray()
+  episodeId: string[];
 }

@@ -8,6 +8,8 @@ import { User } from '../user/user.entity';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { Artist } from '../artist/artist.entity';
+import { Song } from '../song/song.entity';
+import { Episode } from '../episode/episode.entity';
 
 require('dotenv').config();
 @Module({
@@ -19,7 +21,7 @@ require('dotenv').config();
         expiresIn: 3600,
       },
     }),
-    TypeOrmModule.forFeature([User, Artist]),
+    TypeOrmModule.forFeature([User, Artist, Song, Episode]),
   ],
   controllers: [AuthController],
   providers: [AuthService, UserService, JwtStrategy],

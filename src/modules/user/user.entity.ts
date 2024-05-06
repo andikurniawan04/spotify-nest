@@ -11,6 +11,8 @@ import { Playlist } from '../playlist/playlist.entity';
 import { Podcast } from '../podcast/podcast.entity';
 import { Exclude } from 'class-transformer';
 import { Artist } from '../artist/artist.entity';
+import { Song } from '../song/song.entity';
+import { Episode } from '../episode/episode.entity';
 
 @Entity('users')
 export class User extends BaseEntityUuid {
@@ -35,4 +37,12 @@ export class User extends BaseEntityUuid {
   @ManyToMany(() => Artist, (artist) => artist.users)
   @JoinTable()
   artists: Artist[];
+
+  @ManyToMany(() => Song, (song) => song.users)
+  @JoinTable()
+  songs: Song[];
+
+  @ManyToMany(() => Episode, (episode) => episode.users)
+  @JoinTable()
+  episodes: Episode[];
 }
