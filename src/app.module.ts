@@ -20,15 +20,15 @@ import { EpisodeModule } from './modules/episode/episode.module';
     ConfigModule.forRoot({}),
     DatabaseConfig,
     AuthModule,
-    UserModule,
+    // UserModule,
     ArtistModule,
     AlbumModule,
     AuthModule,
     SongModule,
     PlaylistModule,
-    EpisodeModule,
+    // EpisodeModule,
   ],
   controllers: [AppController, AlbumController],
   providers: [AppService, ResponseJson],
 })
-export class AppModule {}
+export class AppModule { }
