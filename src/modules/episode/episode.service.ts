@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Episode } from './episode.entity';
 import { Repository } from 'typeorm';
-import { GetUser } from 'src/core/decorators/GetUser.Decorator';
 import { User } from '../user/user.entity';
 
 @Injectable()
@@ -10,7 +9,7 @@ export class EpisodeService {
   constructor(
     @InjectRepository(Episode)
     private episodeRepository: Repository<Episode>,
-  ) {}
+  ) { }
 
   // async episode(idEpisode: string) {
   //   const episode = await this.episodeRepository.findOne({

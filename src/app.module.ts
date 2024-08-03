@@ -29,4 +29,4 @@ import { EpisodeModule } from './modules/episode/episode.module';
   controllers: [AppController, AlbumController],
   providers: [AppService, ResponseJson],
 })
-export class AppModule {}
+export class AppModule { }

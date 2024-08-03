@@ -10,7 +10,7 @@ import {
 import { UserService } from './user.service';
 import { followingArtistDto, likeSongDto, saveEpisodeDto } from './user.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { GetUser } from 'src/core/decorators/GetUser.Decorator';
+import { GetUser } from 'src/core/decorators/GetUser.decorator';
 import { User } from './user.entity';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -18,7 +18,7 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('me')
 @UseGuards(AuthGuard())
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
   @Get('following/artist')
   async listFollowArtist(@GetUser() user: User) {
     const data = await this.userService.listFollowArtist(user);
