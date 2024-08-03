@@ -1,7 +1,9 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { AlbumService } from './album.service';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Album')
 @Controller('album')
 @UseGuards(AuthGuard())
 export class AlbumController {

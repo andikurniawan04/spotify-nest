@@ -2,7 +2,7 @@ import {
   ConflictException,
   Injectable,
   InternalServerErrorException,
-  UnauthorizedException,
+  NotFoundException,
 } from '@nestjs/common';
 import { User } from '../user/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -27,7 +27,7 @@ export class AuthService {
       const accessToken: string = await this.jwtService.sign({ email });
       return accessToken;
     } else {
-      throw new UnauthorizedException('Username or password is wrong');
+      throw new NotFoundException('Username or password is wrong');
     }
   }
 

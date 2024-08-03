@@ -12,7 +12,9 @@ import { followingArtistDto, likeSongDto, saveEpisodeDto } from './user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/core/decorators/GetUser.decorator';
 import { User } from './user.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('User')
 @Controller('me')
 @UseGuards(AuthGuard())
 export class UserController {
