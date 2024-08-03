@@ -3,7 +3,9 @@ import { EpisodeService } from './episode.service';
 import { GetUser } from 'src/core/decorators/GetUser.Decorator';
 import { User } from '../user/user.entity';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Episode')
 @Controller('episode')
 @UseGuards(AuthGuard())
 export class EpisodeController {
@@ -13,10 +15,5 @@ export class EpisodeController {
     const data = await this.episdoeService.episode(id, user);
 
     return data;
-
-    return {
-      status: true,
-      data: data,
-    };
   }
 }
